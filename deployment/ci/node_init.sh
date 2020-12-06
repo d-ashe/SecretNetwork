@@ -31,21 +31,3 @@ PUBLIC_KEY=$(secretd parse attestation_cert.der 2> /dev/null | cut -c 3- )
 
 echo "Public key: $(secretd parse attestation_cert.der 2> /dev/null | cut -c 3- )"
 
-secretcli tx register auth attestation_cert.der --node http://bootstrap:26657 -y --from a
-
-sleep 5
-
-SEED=$(secretcli q register seed "$PUBLIC_KEY" --node http://bootstrap:26657 2> /dev/null | cut -c 3-)
-echo "SEED: $SEED"
-
-secretcli q register secret-network-params --node http://bootstrap:26657 2> /dev/null
-
-secretd configure-secret node-master-cert.der "$SEED"
-
-cp /tmp/.secretd/config/genesis.json /root/.secretd/config/genesis.json
-
-secretd validate-genesis
-
-RUST_BACKTRACE=1 secretd start &
-
-./wasmi-sgx-test.sh
