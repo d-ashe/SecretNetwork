@@ -13,9 +13,7 @@ rm -rf ~/.secretd
 
 mkdir -p /root/.secretd/.node
 
-secretd init "$(hostname)" --chain-id enigma-testnet || true
-
-PERSISTENT_PEERS=115aa0a629f5d70dd1d464bc7e42799e00f4edae@bootstrap:26656
+secretd init "$(hostname)" --chain-id "$CHAINID" || true
 
 sed -i 's/persistent_peers = ""/persistent_peers = "'$PERSISTENT_PEERS'"/g' ~/.secretd/config/config.toml
 echo "Set persistent_peers: $PERSISTENT_PEERS"
