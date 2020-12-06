@@ -125,7 +125,7 @@ then
     printf '\n'
     echo "export CHAINID=$2"
     echo "export MONIKER=$3"
-    echo "export PRSISTENT_PEERS=$4"
+    echo "export PERSISTENT_PEERS=$4"
     echo "export RPC_URL=$5"
     echo "export REGISTRATION_SERVICE=$6"
     printf 'docker-compose -f /usr/local/bin/secret-node/docker-compose.yaml up -d\n'
