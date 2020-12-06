@@ -35,14 +35,17 @@ echo "Installing docker-compose" >> /home/"$1"/install.progress.txt
 # systemctl status docker
 sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-"$(uname -s)"-"$(uname -m)" -o /usr/local/bin/docker-compose
 
-chmod +x /usr/local/bin/docker-compose
+
+sudo chown -R "$1":"$1" /usr/local/bin
+chmod 700 -R /usr/local/bin
+
 
 echo "Creating secret node runner" >> /home/"$1"/install.progress.txt
 
 mkdir -p /usr/local/bin/secret-node
 
 echo "Copying docker compose file from $7" >> /home/"$1"/install.progress.txt
-curl -L "$7" -o /usr/local/bin/secret-node/docker-compose.yaml
+sudo curl -L "$7" -o /usr/local/bin/secret-node/docker-compose.yaml
 
 mainnetstr="mainnet"
 if test "${6#*$mainnetstr}" != "$6"
