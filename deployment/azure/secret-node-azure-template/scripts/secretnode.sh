@@ -10,7 +10,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-sudo /bin/date +%H:%M:%S > /home/"$1"/install.progress.txt
+date +%H:%M:%S > /home/"$1"/install.progress.txt
 
 echo "Creating tmp folder for aesm" >> /home/"$1"/install.progress.txt
 
