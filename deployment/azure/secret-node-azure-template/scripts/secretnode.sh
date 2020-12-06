@@ -96,7 +96,7 @@ export REGISTRATION_SERVICE=$6
 {
   echo "CHAINID=$2"
   echo "MONIKER=$3"
-  echo "PRSISTENT_PEERS=$4"
+  echo "PERSISTENT_PEERS=$4"
   echo "RPC_URL=$5"
   echo "REGISTRATION_SERVICE=$6"
 } >> /home/"$1"/install.progress.txt
