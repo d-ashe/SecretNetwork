@@ -21,6 +21,7 @@ services:
       - /tmp/.sgx_secrets:/root/.sgx_secrets
     environment:
       - SGX_MODE=HW
+      - SECRET_NODE_TYPE=FULL
       - MONIKER
       - RPC_URL
       - CHAINID
