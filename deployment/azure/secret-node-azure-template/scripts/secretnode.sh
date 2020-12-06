@@ -45,7 +45,7 @@ echo "Creating secret node runner" >> /home/"$1"/install.progress.txt
 mkdir -p /usr/local/bin/secret-node
 
 echo "Copying docker compose file from $7" >> /home/"$1"/install.progress.txt
-sudo curl -L "$7" -o /usr/local/bin/secret-node/docker-compose.yaml
+curl -L "$7" -o /usr/local/bin/secret-node/docker-compose.yaml
 
 mainnetstr="mainnet"
 if test "${6#*$mainnetstr}" != "$6"
@@ -136,11 +136,11 @@ fi
 
 docker-compose -f /usr/local/bin/secret-node/docker-compose.yaml up -d
 
-secretcli completion > /root/secretcli_completion
-secretd completion > /root/secretd_completion
+sudo secretcli completion > /root/secretcli_completion
+sudo secretd completion > /root/secretd_completion
 
-docker cp secret-node_node_1:/root/secretcli_completion /home/"$1"/secretcli_completion
-docker cp secret-node_node_1:/root/secretd_completion /home/"$1"/secretd_completion
+sudo docker cp secret-node_node_1:/root/secretcli_completion /home/"$1"/secretcli_completion
+sudo docker cp secret-node_node_1:/root/secretd_completion /home/"$1"/secretd_completion
 
 echo 'source /home/'$1'/secretd_completion' >> /home/"$1"/.bashrc
 echo 'source /home/'$1'/secretcli_completion' >> /home/"$1"/.bashrc
