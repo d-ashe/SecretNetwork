@@ -21,10 +21,6 @@ echo "Set persistent_peers: $PERSISTENT_PEERS"
 echo "Waiting for bootstrap to start..."
 sleep 20
 
-# MASTER_KEY="$(secretcli q register secret-network-params --node http://bootstrap:26657 2> /dev/null | cut -c 3- )"
-
-#echo "Master key: $MASTER_KEY"
-
 secretd init-enclave
 
 PUBLIC_KEY=$(secretd parse attestation_cert.der 2> /dev/null | cut -c 3- )
